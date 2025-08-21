@@ -8,24 +8,32 @@ use rand::Rng;
 
 fn main() {
     println!("Let's start a guess game");
+
     let rand_number = rand::thread_rng().gen_range(1..=100);
-
     println!("the rand number is {rand_number}");
-
-    println!("Please input a guess");
-    let mut guess = String::new();
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("read_line fail");
     
-    println!("Your guess：{guess}");
-
-    // variable shadowing for "guess" -> reuse the variable; 
-    let guess: u32 = guess.trim().parse().expect("please input a number");
-
-    match guess.cmp(&rand_number) {
-        Ordering::Equal => println!("Correct!"),
-        Ordering::Greater => println!("Too larget"),
-        Ordering::Less => println!("Too small"),
+    loop {
+        println!("Please input a guess");
+        let mut guess = String::new();
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("read_line fail");
+        
+        println!("Your guess：{guess}");
+    
+        // variable shadowing for "guess" -> reuse the variable; 
+        let guess: u32 = match guess.trim().parse() {
+            Ok(val) => val,
+            Err(_) => continue,
+        };
+    
+        match guess.cmp(&rand_number) {
+            Ordering::Equal => {
+                println!("Correct!");
+                break;
+            },
+            Ordering::Greater => println!("Too larget"),
+            Ordering::Less => println!("Too small"),
+        }
     }
 }
