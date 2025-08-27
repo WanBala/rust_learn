@@ -38,4 +38,18 @@ fn main() {
     let _var_char = '😊'; // In Rust, char is represented as a UTF-32 code point (4 bytes).
     let _var_char: char = '😊';
     println!("{_var_char}");
+
+    //==== 4. Compound Types ====
+    let _tup = (2, 5.1, "Hello World");
+    let _tup: (i32, f64, &str) = (2, 5.1, "Hello World");  // "Hello World" is type " &'static str "
+    let _tup: (i32, f64, String) = (2, 5.1, String::from("Hello World"));
+
+    // tuple destructuring
+    let (_x, _y, _z) = _tup;   //  the owner of _tup.2 is moved to _z
+    // if _tup.0 == _x && _tup.2 == _z {
+    //                       ^  compile error: invalid due to _tup.2 is no longer avaiable.
+    // }
+
+    let _arr = [1, 2, 3, 4, 5, 6];
+    let _arr: [i32; 6] = [1, 2, 3, 4, 5, 6];
 }
