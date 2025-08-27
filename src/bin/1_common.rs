@@ -1,4 +1,14 @@
 fn main() {
+    // 1. Variables, Shadow and common Data Types
+    variable_data_type();
+
+    // 2. functions
+    let (_x, _y) = fuction_a(5);
+    println!("function_b(5, 6) is : {}", function_b(5, 6));
+}
+
+
+fn variable_data_type() {
     //===== 1. Variables =====
     let mut x = 5;
     println!("the value x: {x}");
@@ -52,4 +62,18 @@ fn main() {
 
     let _arr = [1, 2, 3, 4, 5, 6];
     let _arr: [i32; 6] = [1, 2, 3, 4, 5, 6];
+    println!("arr[5] : {}", _arr[5]);
+
+}
+
+fn fuction_a(x:i32) -> (i32, i32) {
+   (x, x) // expression
+}
+
+fn function_b(x:i32, y:i32) -> i32 {
+    println!("x: {x}, y: {y} "); // statement
+    {
+        let g = 5;
+        x * y * g
+    } // expression: the value of {} is x * y * g
 }
