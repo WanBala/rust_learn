@@ -8,6 +8,9 @@ fn main() {
 
     // 2. loop
     loop_count("The message", 10);
+
+    // 3. nested loop
+    nested_loop(5);
 }
 
 fn if_larger(x: u32, compare: u32) -> bool {
@@ -33,4 +36,20 @@ fn loop_count(msg: &str, count: u8) {
             break
         }
     }
+}
+
+fn nested_loop(jump_count: u32) -> u32 {
+    // this function to show how to break nested loop by label
+    let mut count = 0;
+    'outer: for _i in 0..10 {
+        for _j in 0..10 {
+            count += 1;
+            if count > jump_count {
+                // specify break labeled-loop "outer"
+                break 'outer;
+            }
+        }
+        count += 1000;
+    }
+    count
 }
